@@ -15,6 +15,7 @@ def main():
                 run = False
             if even.type == pygame.KEYDOWN:
                 entity.move(10, 0)
+                entity.rotate(90)
         win.render(entity)
         win.display()
     pygame.quit()

@@ -12,6 +12,7 @@ class GameWindow:
     def render(self, entity):
         texture = TextureLoader.load_texture(entity.texture_path)
         texture = pygame.transform.scale(texture, (entity.h, entity.w))
+        texture = TextureLoader.rotate_texture(texture, entity.rotation)
         self._game_window.blit(texture, (entity.x, entity.y))
 
     def display(self):

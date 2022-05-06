@@ -1,11 +1,11 @@
-from Maths.vector2d import Vector2d
+from Maths.Pose2d import Pose2d
 import pygame
 
 
 class Entity(pygame.sprite.Sprite):
-    def __init__(self, x, y, width, height, texture_path):
+    def __init__(self, x, y, width, height, texture_path, heading=0):
         super(Entity, self).__init__()
-        self._position = Vector2d(x, y)
+        self._position = Pose2d(x, y, heading)
         self._width = width
         self._height = height
         self._texture_path = texture_path
@@ -13,6 +13,9 @@ class Entity(pygame.sprite.Sprite):
     def move(self, x, y):
         self._position.x += x
         self._position.y += y
+
+    def rotate(self, rotation):
+        self._position.heading += rotation
 
     @property
     def x(self):
@@ -29,6 +32,14 @@ class Entity(pygame.sprite.Sprite):
     @y.setter
     def y(self, y):
         self._position.y = y
+
+    @property
+    def rotation(self):
+        return self._position.heading
+
+    @rotation.setter
+    def rotation(self, heading):
+        self._position.heading = heading
 
     @property
     def w(self):
