@@ -1,18 +1,18 @@
 import pygame
+from Engine.GameWindow import GameWindow
+from Engine.Entity import Entity
 
 
 def main():
     pygame.init()
-    screen = pygame.display.set_mode([500, 500])
     run = True
+    entity = Entity(100, 100, 100, 100, "C:/Users/user/Documents/GitHub/robot-simulator/assets/smile.png")
+    win = GameWindow()
     while run:
         for even in pygame.event.get():
             if even.type == pygame.QUIT:
                 run = False
-        screen.fill((255, 255, 255))
-        pygame.draw.circle(screen, (0, 0, 255), (250, 250), 75)
-        pygame.display.flip()
-
+        win.render(entity)
     pygame.quit()
 
 

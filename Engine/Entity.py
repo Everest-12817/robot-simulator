@@ -12,6 +12,10 @@ class Entity(pygame.sprite.Sprite):
         self._texture = pygame.transform.scale(self._texture, (height, width))
         self._rect = self._texture.get_rect()
 
+    def move(self, x, y):
+        self._position.x += x
+        self._position.y += y
+
     @property
     def x(self):
         return self._position.x
