@@ -1,1 +1,4 @@
 .idea
+venv
+Engine/__pycache__/
+Maths/__pycache__/

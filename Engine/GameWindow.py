@@ -1,4 +1,5 @@
 from Engine.Entity import Entity
+from Engine.TextureLoader import TextureLoader
 import pygame
 
 
@@ -9,7 +10,12 @@ class GameWindow:
         self._game_window = pygame.display.set_mode((screen_width, screen_height))
 
     def render(self, entity):
-        self._game_window.blit(entity.texture, (entity.x, entity.y))
+        texture = TextureLoader.load_texture(entity.texture_path)
+        texture = pygame.transform.scale(texture, (entity.h, entity.w))
+        self._game_window.blit(texture, (entity.x, entity.y))
 
     def display(self):
         pygame.display.flip()
+
+    def clear_display(self):
+        self._game_window.fill((255, 255, 255))

@@ -8,9 +8,7 @@ class Entity(pygame.sprite.Sprite):
         self._position = Vector2d(x, y)
         self._width = width
         self._height = height
-        self._texture = pygame.image.load(texture_path).convert()
-        self._texture = pygame.transform.scale(self._texture, (height, width))
-        self._rect = self._texture.get_rect()
+        self._texture_path = texture_path
 
     def move(self, x, y):
         self._position.x += x
@@ -57,9 +55,9 @@ class Entity(pygame.sprite.Sprite):
         self._height = h
 
     @property
-    def texture(self):
-        return self._texture
+    def texture_path(self):
+        return self._texture_path
 
-    @property
-    def rect(self):
-        return self._rect
+    @texture_path.setter
+    def texture_path(self, texture_path):
+        self._texture_path = texture_path
