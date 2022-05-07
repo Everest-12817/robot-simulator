@@ -1,22 +1,25 @@
 import pygame
 from Engine.GameWindow import GameWindow
 from Engine.Entity import Entity
+from Robotics.robot import Robot
 
 
 def main():
     pygame.init()
     run = True
-    entity = Entity(100, 100, 100, 100, "assets/smile.png")
+    robot = Robot(100, 100, 100, 100, 0)
+    robot.Vr = 10
+    robot.Vl = 1
+    clock = pygame.time.Clock()
     win = GameWindow()
     while run:
         win.clear_display()
         for even in pygame.event.get():
             if even.type == pygame.QUIT:
                 run = False
-            if even.type == pygame.KEYDOWN:
-                entity.move(10, 0)
-                entity.rotate(90)
-        win.render(entity)
+        clock.tick(5)
+        robot.update()
+        win.render(robot)
         win.display()
     pygame.quit()
 

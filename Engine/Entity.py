@@ -10,6 +10,9 @@ class Entity(pygame.sprite.Sprite):
         self._height = height
         self._texture_path = texture_path
 
+    def update(self):
+        raise NotImplementedError("[Entity] Cannot call update on pure entity")
+
     def move(self, x, y):
         self._position.x += x
         self._position.y += y
