@@ -69,5 +69,10 @@ class Pose2d:
         self._y /= scalar
         self._heading /= scalar
 
+    def __eq__(self, other):
+        self._x = other.x
+        self._y = other.y
+        self._heading = other.heading
+
     def hadamard(self, other):
         return Pose2d(self._x * other.x, self._y * other.y, self._heading * other.heading)
