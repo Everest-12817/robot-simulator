@@ -1,28 +1,21 @@
-import enum
 from Robotics.DifferentialDriveKinematics import Kinematics
 from Engine.Entity import Entity
-from Maths.vector2d import Vector2d
-from math import cos, sin, pi
+import pygame
+from math import cos, sin
 
 ROBOT_TEXTURE_PATH = "assets/png-transparent-differential-wheeled-robot.png"
 
-
-class RobotMotors(enum.Enum):
-    left_motor = 0
-    right_motor = 1
+dt = 0
 
 
 class Robot(Entity):
-    def __init__(self, x, y, width, height, l, radius, initial_angle):
-        super(Robot, self).__init__(x, y, width, height, ROBOT_TEXTURE_PATH, initial_angle)
-        self.L = l
-        self.R = 0
-        self.wheel_radius = radius
-        self.Angle = initial_angle
+    def __init__(self, start_pose, width, height):
+        super(Robot, self).__init__(start_pose.x, start_pose.y, width, height, ROBOT_TEXTURE_PATH, start_pose.theta)
+        self.m2p = 3779.52
         self._vl = 0
         self._vr = 0
+        self.lasttime = pygame.time.get_ticks()
         self.AngularVelocity = 0
-        self.ICC = Vector2d()
 
     @property
     def Vr(self):
@@ -41,9 +34,10 @@ class Robot(Entity):
         self._vl = vl
 
     def update(self):
-        self.position = Kinematics.calc_new_position(self, 1)
-        self.rotation = self.rotation % (2 * pi)
-        # x_n, y_n, theta_n = Kinematics.diffdrive(self.x, self.y, self.rotation, self.Vl, self.Vr, 1, self.L)
-        # self.x = x_n
-        # self.y = y_n
-        # self.rotation = theta_n
+        dt = (pygame.time.get_ticks() - self.lasttime) / 1000
+        velocity = Kinematics.calculate_velocity(self.Vl, self.Vr)
+        angular_velocity = Kinematics.calculate_angular_velocity(self.Vl, self.Vr, self.w)
+        self.x += velocity * cos(self.heading) * dt
+        self.y -= velocity * sin(self.heading) * dt
+        self.heading += angular_velocity * dt
+        self.lasttime = pygame.time.get_ticks()

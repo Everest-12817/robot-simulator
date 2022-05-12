@@ -18,7 +18,7 @@ class Entity(pygame.sprite.Sprite):
         self._position.y += y
 
     def rotate(self, rotation):
-        self._position.heading += rotation
+        self._position.theta += rotation
 
     @property
     def x(self):
@@ -37,12 +37,12 @@ class Entity(pygame.sprite.Sprite):
         self._position.y = y
 
     @property
-    def rotation(self):
-        return self._position.heading
+    def heading(self):
+        return self._position.theta
 
-    @rotation.setter
-    def rotation(self, heading):
-        self._position.heading = heading
+    @heading.setter
+    def heading(self, heading):
+        self._position.theta = heading
 
     @property
     def w(self):
