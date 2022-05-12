@@ -1,6 +1,5 @@
 from Maths.vector2d import Vector2d
-from Maths.Pose2d import Pose2d
-from math import cos, sin, radians
+from math import cos, sin
 
 
 class Kinematics:

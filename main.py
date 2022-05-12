@@ -1,4 +1,5 @@
 import pygame
+from FLL.Field import Field
 from Engine.GameWindow import GameWindow
 from Maths.Pose2d import Pose2d
 from Engine.Entity import Entity
@@ -10,15 +11,16 @@ def main():
     pygame.init()
     run = True
     start_pose = Pose2d(100, 100, 0)
-    robot = Robot(start_pose, 0.01 * 3779.52, 0.01 * 3779.52)
-    robot.Vr = 0.05 * robot.m2p
-    robot.Vl = 0.05 * robot.m2p
-    win = GameWindow()
+    robot = Robot(start_pose, 0.015, 0.015)
+    robot.Vr = 0.05
+    robot.Vl = 0.09
+    win = Field(robot)
     while run:
         win.clear_display()
         for even in pygame.event.get():
             if even.type == pygame.QUIT:
                 run = False
+        win.check_robot_collision()
         win.render(robot)
         robot.update()
         win.display()
