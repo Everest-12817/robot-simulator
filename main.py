@@ -2,8 +2,8 @@ import pygame
 from FLL.Field import Field
 from Engine.GameWindow import GameWindow
 from Maths.Pose2d import Pose2d
-from Engine.Entity import Entity
-from math import pi
+from Commands.Invoker import Invoker
+from Commands.test_command import test_command
 from Robotics.robot import Robot
 
 
@@ -15,6 +15,8 @@ def main():
     robot.Vr = 0.05
     robot.Vl = 0.09
     win = Field(robot)
+    inv = Invoker()
+    inv.add_command(test_command(robot))
     while run:
         win.clear_display()
         for even in pygame.event.get():
@@ -22,9 +24,10 @@ def main():
                 run = False
         win.check_robot_collision()
         win.render(robot)
-        robot.update()
+        inv.invoke()
+        #robot.update()
         win.display()
-
+        print(robot.position)
     pygame.quit()
 
 
