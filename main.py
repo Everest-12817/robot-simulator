@@ -1,7 +1,7 @@
 import pygame
 from FLL.Field import Field
 from Maths.Pose2d import Pose2d
-from Robotics.robot import DifferentialDriveRobot
+from Robotics.DifferentialDriveRobot import DifferentialDriveRobot
 
 
 def main():

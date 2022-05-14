@@ -1,16 +1,13 @@
-from Robotics.Kinematics.DifferentialDriveKinematics import DifferentialDriveKinematics
 from Robotics.DriveTrains.DifferentialDriveTrain import DifferentialDriveTrain
-from Engine.Entity import Entity
+from Robotics.BaseRobot import BaseRobot
 from Maths.Util import Util
-import pygame
-from math import cos, sin
 
 ROBOT_TEXTURE_PATH = "assets/Robot/png-transparent-differential-wheeled-robot.png"
 
 
-class DifferentialDriveRobot(Entity):
+class DifferentialDriveRobot(BaseRobot):
     """"
-    A robot entity
+    A differential drive robot entity
     """
 
     def __init__(self, start_pose, width, height):
@@ -19,12 +16,8 @@ class DifferentialDriveRobot(Entity):
         :param width: the width of the robot
         :param height:  the height of the robot
         """
-        width = Util.meter2pixels(width)
-        self.dt = 0
-        super(DifferentialDriveRobot, self).__init__(start_pose.x, start_pose.y, width, Util.meter2pixels(height),
-                                                     ROBOT_TEXTURE_PATH, start_pose.theta)
-        self.lasttime = pygame.time.get_ticks()
-        self.DriveTrain = DifferentialDriveTrain(width)
+        super(DifferentialDriveRobot, self).__init__(start_pose, width, height, ROBOT_TEXTURE_PATH)
+        self.DriveTrain = DifferentialDriveTrain(self.w)
 
     @property
     def Vr(self):
@@ -55,13 +48,3 @@ class DifferentialDriveRobot(Entity):
         :return: None
         """
         self.DriveTrain.vl = Util.meter2pixels(vl)
-
-    def update(self):
-        """
-        Updates the position of the robot using the kinematics equations of non holonomic differential drive
-        :return:
-        """
-        self.dt = (pygame.time.get_ticks() - self.lasttime) / 1000
-        drive_distance = self.DriveTrain.drive(self.heading, self.dt)
-        self.position = drive_distance + self.position
-        self.lasttime = pygame.time.get_ticks()
