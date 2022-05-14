@@ -1,16 +1,16 @@
 import pygame
 from FLL.Field import Field
 from Maths.Pose2d import Pose2d
-from Robotics.robot import Robot
+from Robotics.robot import DifferentialDriveRobot
 
 
 def main():
     pygame.init()
     run = True
     start_pose = Pose2d(100, 100, 0)
-    robot = Robot(start_pose, 0.015, 0.015)
+    robot = DifferentialDriveRobot(start_pose, 0.015, 0.015)
     robot.Vr = 0.09
-    robot.Vl = 0.09
+    robot.Vl = 0.06
     win = Field(robot)
     while run:
         win.clear_display()

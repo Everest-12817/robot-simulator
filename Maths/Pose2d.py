@@ -6,6 +6,7 @@ class Pose2d:
     This class represents a 2d position of entity in the game window
     which includes it's x and y position, and it's rotation
     """
+
     def __init__(self, x=0, y=0, theta=0):
         """
         :param x: position x coordinates
@@ -60,31 +61,6 @@ class Pose2d:
 
     def __truediv__(self, scalar):
         return Pose2d(self._x / scalar, self._y / scalar, self._theta / scalar)
-
-    def __iadd__(self, other):
-        self._x += other.x
-        self._y += other.y
-        self._theta += other.theta
-
-    def __isub__(self, other):
-        self._x -= other.x
-        self._y -= other.y
-        self._theta = other.theta
-
-    def __imul__(self, scalar):
-        self._x *= scalar
-        self._y *= scalar
-        self._theta *= scalar
-
-    def __idiv__(self, scalar):
-        self._x /= scalar
-        self._y /= scalar
-        self._theta /= scalar
-
-    def __eq__(self, other):
-        self._x = other.x
-        self._y = other.y
-        self._theta = other.theta
 
     def hadamard(self, other):
         """

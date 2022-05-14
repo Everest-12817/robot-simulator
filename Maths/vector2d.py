@@ -3,6 +3,7 @@ class Vector2d:
     This class represent a 2d vectoy
     Mostly used to represent coordinates of objects on screen
     """
+
     def __init__(self, x=0, y=0):
         """
         :param x: the first element of the vector
@@ -41,22 +42,6 @@ class Vector2d:
 
     def __truediv__(self, scalar):
         return Vector2d(self._x / scalar, self._y / scalar)
-
-    def __iadd__(self, other):
-        self._x += other.x
-        self._y += other.y
-
-    def __isub__(self, other):
-        self._x -= other.x
-        self._y -= other.y
-
-    def __imul__(self, scalar):
-        self._x *= scalar
-        self._y *= scalar
-
-    def __idiv__(self, scalar):
-        self._x /= scalar
-        self._y /= scalar
 
     def hadamard(self, other):
         """

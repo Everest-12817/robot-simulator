@@ -2,7 +2,7 @@ from Maths.vector2d import Vector2d
 from math import cos, sin
 
 
-class Kinematics:
+class DifferentialDriveKinematics:
     """
     This class contains kinematics functions for non holonomic differential
     """
