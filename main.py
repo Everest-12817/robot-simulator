@@ -10,7 +10,7 @@ def main():
     start_pose = Pose2d(100, 100, 0)
     robot = DifferentialDriveRobot(start_pose, 0.015, 0.015)
     robot.Vr = 0.09
-    robot.Vl = 0.06
+    robot.Vl = 0.09
     win = Field(robot)
     while run:
         win.clear_display()

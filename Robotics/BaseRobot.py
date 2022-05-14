@@ -25,7 +25,7 @@ class BaseRobot(Entity):
     def update(self):
         """
         Updates the position of the robot using the kinematics equations of non holonomic differential drive
-        :return:
+        :return: None
         """
         self.dt = (pygame.time.get_ticks() - self.lasttime) / 1000
         drive_distance = self.DriveTrain.drive(self.heading, self.dt)
