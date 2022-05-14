@@ -1,8 +1,11 @@
 class Command:
+    """
+    Base command class for command design pattern
+    Still in work
+    """
 
     def __init__(self):
         self._command_name = ""
-        self.condition = None
 
     @property
     def command_name(self):
