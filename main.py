@@ -1,7 +1,8 @@
 import pygame
-from FLL.Field import Field
+from FLL.FllField import FllField
 from Maths.Pose2d import Pose2d
 from Robotics.DifferentialDriveRobot import DifferentialDriveRobot
+from Robotics.MissionLoader import MissionLoader
 
 
 def main():
@@ -11,7 +12,8 @@ def main():
     robot = DifferentialDriveRobot(start_pose, 0.015, 0.015)
     robot.Vr = 0.09
     robot.Vl = 0.09
-    win = Field(robot)
+    win = FllField(robot)
+    missions = MissionLoader.load_missions("Missions/Example_missions.xml")
     while run:
         win.clear_display()
         for even in pygame.event.get():

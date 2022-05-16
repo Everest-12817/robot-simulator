@@ -1,24 +1,28 @@
 from Engine.GameWindow import GameWindow
 from Engine.TextureLoader import TextureLoader
+from Robotics.BaseField import BaseField
 import pygame
 
 FIELD_TEXTURE_PATH = "assets/Field/2021_CargoConnectMat-300x200.png"
+FLL_FIELD_HEIGHT = 0  # TODO update with real height
+FLL_FIELD_WIDTH = 0  # TODO update with real width
 
 
-class Field(GameWindow):
+class FllField(BaseField):
     """
     Class represent the robot game field
     This class simulates a robot game field with a robot in it
     The class inherits the game window base class
     """
-    def __init__(self, robot, missions=None):
+
+    def __init__(self, robot,  missions=None):
         """
         :param robot: Robot on the game field
         :param missions: missions on the game field
         """
-        super(Field, self).__init__()  # TODO : update with real field size
+        super(FllField, self).__init__(robot, FIELD_TEXTURE_PATH, 600, 600,
+                                       missions)  # TODO : update with real field size
         self.robot = robot
-        self.field_texture = TextureLoader.load_texture(FIELD_TEXTURE_PATH).convert()
         self.field_texture = pygame.transform.scale(self.field_texture, (self._screen_height, self._screen_width))
         self.missions = [] if missions is None else missions
 

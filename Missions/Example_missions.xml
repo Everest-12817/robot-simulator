@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<missions>
+    <mission name="test">
+        <x>100</x>
+        <y>200</y>
+        <width>1</width>
+        <height>2</height>
+    </mission>
+       <mission name="test2">
+        <x>200</x>
+        <y>300</y>
+        <width>20</width>
+        <height>30</height>
+           <heading>90</heading>
+    </mission>
+</missions>

@@ -1,11 +1,12 @@
-from Engine import Entity
+from Engine.Entity import Entity
 
 
 class Mission(Entity):
     """
     A mission on the game field
     """
-    def __init__(self, x, y, width, height, texture_path, name, heading = 0):
+
+    def __init__(self, x, y, width, height,  name, heading=0):
         """
         :param x: The x position of the mission
         :param y: The y position of the mission
@@ -15,7 +16,7 @@ class Mission(Entity):
         :param name: The name of the mission
         :param heading: The rotation of the mission
         """
-        super(Mission, self).__init__(x, y, width, height, texture_path, heading)
+        super(Mission, self).__init__(x, y, width, height, "", heading)
         self._name = name
 
     @property
@@ -25,6 +26,9 @@ class Mission(Entity):
     @name.setter
     def name(self, name):
         self._name = name
+
+    def __str__(self):
+        return f"Mission {self._name}, width {self.w}, height {self.h}"
 
     def update(self):
         pass
